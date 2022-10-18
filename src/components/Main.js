@@ -6,11 +6,13 @@ function Main() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get(movieRequests.requestLatest).then((response) => {
-      setMovies(response.data);
+    axios.get(movieRequests.requestPopular).then((response) => {
+      setMovies(response.data.results);
     });
   }, []);
-  console.log(movies);
+
+  const movie = movies[Math.floor(Math.random() * movies.length)];
+  console.log(movie);
   return <div>Main</div>;
 }
 
