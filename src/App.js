@@ -1,10 +1,10 @@
+import Navbar from './components/Navbar';
+
 function App() {
   return (
-    <div>
-      <h>
-        NetFlix
-      </h>
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 }
 
