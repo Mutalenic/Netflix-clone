@@ -6,7 +6,7 @@ function Main() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get(movieRequests.requestPopular).then((response) => {
+    axios.get(movieRequests.requestNowPlaying).then((response) => {
       setMovies(response.data.results);
     });
   }, []);
