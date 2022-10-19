@@ -12,7 +12,14 @@ function Main() {
   }, []);
 
   const movie = movies[Math.floor(Math.random() * movies.length)];
-  console.log(movie);
+
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return `${str.slice(0, num)}...`;
+    }
+    return str;
+  };
+
   return (
     <div className="w-full h-[550px] text-white">
       <div className="w-full h-full">
@@ -38,7 +45,10 @@ function Main() {
               Watch Later
             </button>
           </div>
-          <p>{movie?.release_date}</p>
+          <p className="text-gray-400 text-sm py-4">{movie?.release_date}</p>
+          <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200">
+            {truncateString(movie?.overview, 100)}
+          </p>
         </div>
       </div>
     </div>
