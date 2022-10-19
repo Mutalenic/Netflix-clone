@@ -23,7 +23,7 @@ function Main() {
           alt={movie?.title}
         />
         <div className="absolute w-full top-[20%] p-4 md:p-8">
-          <h1>{movie?.title}</h1>
+          <h1 className="text-3xl md:text-5xl ">{movie?.title}</h1>
           <div>
             <button
               className="border bg-gray-300 text-black border-gray-300 py-2 px-5"
@@ -38,6 +38,7 @@ function Main() {
               Watch Later
             </button>
           </div>
+          <p>{movie?.release_date}</p>
         </div>
       </div>
     </div>
