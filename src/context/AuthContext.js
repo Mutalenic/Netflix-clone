@@ -1,12 +1,14 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { auth, db } from '../firebase';
+import {
+  createContext, useContext, useEffect, useState,
+} from 'react';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import {setDoc,doc} from 'firebase/firestore'
+import { setDoc, doc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
 const AuthContext = createContext();
 
@@ -16,8 +18,8 @@ export function AuthContextProvider({ children }) {
   function signUp(email, password) {
     createUserWithEmailAndPassword(auth, email, password);
     setDoc(doc(db, 'users', email), {
-        savedShows: []
-    })
+      savedShows: [],
+    });
   }
 
   function logIn(email, password) {
@@ -38,7 +40,10 @@ export function AuthContextProvider({ children }) {
   });
 
   return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
+    <AuthContext.Provider value={{
+      signUp, logIn, logOut, user,
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );
