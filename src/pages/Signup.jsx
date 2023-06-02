@@ -5,7 +5,9 @@ import { UserAuth } from '../context/AuthContext';
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signUp } = UserAuth();
+  // eslint-disable-next-line no-unused-vars
+  const { user, signUp } = UserAuth();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
