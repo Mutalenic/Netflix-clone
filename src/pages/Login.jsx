@@ -27,7 +27,7 @@ function Login() {
                 placeholder="Password"
                 autoComplete="current-password"
               />
-              <button type="submit" className="bg-red-600 py-3 my-6 rounded font-bold">
+              <button type="button" className="bg-red-600 py-3 my-6 rounded font-bold">
                 Sign In
               </button>
               <div className="flex justify-between items-center text-sm text-gray-600">
