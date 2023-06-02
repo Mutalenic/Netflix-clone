@@ -1,6 +1,7 @@
-import {
+import React, {
   createContext, useContext, useEffect, useState,
 } from 'react';
+import PropTypes from 'prop-types';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,7 +9,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth } from '../firebase';
 
 const AuthContext = createContext();
 
@@ -17,7 +18,7 @@ export function AuthContextProvider({ children }) {
 
   function signUp(email, password) {
     createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, 'users', email), {
+    setDoc(doc('users', email), {
       savedShows: [],
     });
   }
@@ -37,17 +38,25 @@ export function AuthContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   return (
-    <AuthContext.Provider value={{
-      signUp, logIn, logOut, user,
-    }}
+    <AuthContext.Provider
+      value={{
+        signUp,
+        logIn,
+        logOut,
+        user,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export function UserAuth() {
   return useContext(AuthContext);
